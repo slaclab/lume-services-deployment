@@ -6,7 +6,7 @@ metadata:
 spec:
   teamId: "prefect"
   volume:
-    size: 100Mi
+    size: 100Gi
   numberOfInstances: 2
   users:
     prefect:  # database owner

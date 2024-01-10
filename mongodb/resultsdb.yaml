@@ -15,13 +15,11 @@ spec:
   updateStrategy: SmartUpdate
   upgradeOptions:
     versionServiceEndpoint: https://check.percona.com
-    apply: disabled
+    apply: Recommended
     schedule: "0 2 * * *"
     setFCV: false
-#  secrets:
-#    users: my-cluster-name-secrets
-#    encryptionKey: my-cluster-name-mongodb-encryption-key
-#    vault: my-cluster-name-vault
+  secrets:
+    users: resultsdb
   replsets:
   - name: rs0
     size: 2
@@ -31,4 +29,4 @@ spec:
       persistentVolumeClaim:
         resources:
           requests:
-            storage: 3Gi
+            storage: 100Gi
