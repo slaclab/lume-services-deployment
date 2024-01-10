@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prefect-server
+  namespace: prefect
+  labels:
+    app: prefect-server
+spec:
+  selector:
+    matchLabels:
+      app: prefect-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prefect-server
+    spec:
+      containers:
+      - name: api
+        image: prefecthq/prefect:2.14.2-python3.9
+        command: ["prefect", "server", "start", "--host", "0.0.0.0", "--log-level", "WARNING"]
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 4200
+        env:
+        - name: PREFECT_API_DATABASE_CONNECTION_URL
+          value: postgresql+asyncpg://prefect:PREFECT_TOKEN@prefect-postgres.prefect.svc.cluster.local:5432/prefect
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prefect-server
+  namespace: prefect
+  labels:
+    app: prefect-server
+spec:
+  ports:
+    - port: 4200
+      protocol: TCP
+  selector:
+    app: prefect-server
+
+

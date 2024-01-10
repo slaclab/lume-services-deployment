@@ -1,0 +1,34 @@
+# See here for an example with most options defined: https://raw.githubusercontent.com/percona/percona-server-mongodb-operator/main/deploy/cr.yaml
+apiVersion: psmdb.percona.com/v1
+kind: PerconaServerMongoDB
+metadata:
+  name: mongo
+  namespace: resultsdb
+  finalizers:
+    - delete-psmdb-pods-in-order
+spec:
+  # See here for more info about these options https://docs.percona.com/percona-operator-for-mongodb/operator.html
+  crVersion: 1.16.0
+  image: perconalab/percona-server-mongodb-operator:main-mongod6.0
+  imagePullPolicy: Always
+  allowUnsafeConfigurations: true
+  updateStrategy: SmartUpdate
+  upgradeOptions:
+    versionServiceEndpoint: https://check.percona.com
+    apply: disabled
+    schedule: "0 2 * * *"
+    setFCV: false
+#  secrets:
+#    users: my-cluster-name-secrets
+#    encryptionKey: my-cluster-name-mongodb-encryption-key
+#    vault: my-cluster-name-vault
+  replsets:
+  - name: rs0
+    size: 2
+    podDisruptionBudget:
+      maxUnavailable: 1
+    volumeSpec:
+      persistentVolumeClaim:
+        resources:
+          requests:
+            storage: 3Gi

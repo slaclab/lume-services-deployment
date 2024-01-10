@@ -1,0 +1,11 @@
+apiVersion: mysql.oracle.com/v2
+kind: InnoDBCluster
+metadata:
+  name: modeldb-cluster
+  namespace: modeldb
+spec:
+  secretName: mysqlpasswd
+  tlsUseSelfSigned: true
+  instances: 2
+  router:
+    instances: 1

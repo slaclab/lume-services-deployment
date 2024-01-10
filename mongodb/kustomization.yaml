@@ -1,0 +1,6 @@
+namespace: resultsdb
+
+resources:
+- mongodb-operator-crd.yaml
+- mongodb-operator-rbac.yaml
+- mongodb-operator.yaml

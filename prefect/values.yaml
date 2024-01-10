@@ -1,0 +1,6 @@
+worker:
+  apiConfig: server
+  config:
+    workPool: kubernetes-work-pool
+  serverApiConfig:
+    apiUrl: http://prefect-server.prefect.svc.cluster.local:4200/api

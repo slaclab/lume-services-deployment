@@ -1,0 +1,29 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: prefect-postgres
+  namespace: prefect
+spec:
+  teamId: "prefect"
+  volume:
+    size: 100Mi
+  numberOfInstances: 2
+  users:
+    prefect:  # database owner
+    - createdb
+  databases:
+    prefect: prefect  # dbname: owner
+  postgresql:
+    version: "15"
+  connectionPooler:
+    numberOfInstances: 1
+    mode: session
+    schema: "pooler"
+    user: "pooler"
+    resources:
+      requests:
+        cpu: 500m
+        memory: 100Mi
+      limits:
+        cpu: "1"
+        memory: 100Mi
