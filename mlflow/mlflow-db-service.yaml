@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mlflow-db
+  name: mlflow-db
+spec:
+  ports:
+    - protocol: TCP
+      port: 5436
+      targetPort: 5432
+      name: mlflow-db
+
+  selector:
+    io.kompose.service: mlflow-db
+status:
+  loadBalancer: {}
