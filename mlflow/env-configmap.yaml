@@ -7,7 +7,7 @@ data:
   MINIO_ROOT_PASSWORD: test_password
   MINIO_ROOT_USER: admin
   MINIO_SITE_REGION: eu-west-3
-  MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+  MLFLOW_S3_ENDPOINT_URL: http://minio:9020
   POSTGRES_DB: mlflowdb
   POSTGRES_PASSWORD: test_password
   POSTGRES_USER: mlflow

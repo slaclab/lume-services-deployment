@@ -16,13 +16,14 @@ spec:
         kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:
+        io.kompose.network/controls: "true"
         io.kompose.service: createbuckets
     spec:
       containers:
         - command:
             - /bin/sh
             - -c
-            - ' echo sleep 30; sleep 30; /usr/bin/mc config host add myminio http://minio:9000  ; /usr/bin/mc mb myminio/mlflow-bucket; exit 0; '
+            - ' echo sleep 30; sleep 30; /usr/bin/mc config host add myminio http://$MINIO_SERVICE_HOST:9021  ; /usr/bin/mc mb myminio/mlflow-bucket; exit 0; '
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
