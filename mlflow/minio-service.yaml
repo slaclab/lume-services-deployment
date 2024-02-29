@@ -9,11 +9,13 @@ metadata:
     io.kompose.service: minio
   name: minio
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 9020
       targetPort: 9000
       name: minio
+      nodePort: 30008
     - protocol: TCP
       port: 9021
       targetPort: 80
