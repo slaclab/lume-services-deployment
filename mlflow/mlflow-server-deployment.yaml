@@ -102,5 +102,5 @@ spec:
             claimName: mlflow-server-claim0
         - name: mlflow-db-config
           secret:
-            name: mlflow-db-config
+            secretName: mlflow-db-config
 status: {}
