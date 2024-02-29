@@ -22,6 +22,7 @@ spec:
         kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:
+        io.kompose.network/controls: "true"
         io.kompose.service: mlflow-db
     spec:
       containers:
