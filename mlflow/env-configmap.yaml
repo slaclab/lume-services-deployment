@@ -11,6 +11,7 @@ data:
   POSTGRES_DB: mlflowdb
   POSTGRES_PASSWORD: test_password
   POSTGRES_USER: mlflow
+  # MLFLOW_AUTH_CONFIG_PATH : /cfgs/basic_auth.ini
 kind: ConfigMap
 metadata:
   creationTimestamp: null

@@ -85,6 +85,11 @@ spec:
                 configMapKeyRef:
                   key: POSTGRES_USER
                   name: env
+            # - name: MLFLOW_AUTH_CONFIG_PATH
+            #   valueFrom:
+            #     configMapKeyRef:
+            #       key: MLFLOW_AUTH_CONFIG_PATH
+            #       name: env
           image: python:3.9.15-slim
           name: mlflow-server
           ports:
@@ -93,14 +98,14 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/mlflow
               name: mlflow-server-claim0
-            - mountPath: /usr/local/lib/python3.9/site-packages/mlflow/server/auth/basic_auth.ini
-              name: mlflow-db-config
+            # - mountPath: /cfgs/basic_auth.ini
+            #   name: mlflow-db-config
       restartPolicy: Always
       volumes:
         - name: mlflow-server-claim0
           persistentVolumeClaim:
             claimName: mlflow-server-claim0
-        - name: mlflow-db-config
-          secret:
-            secretName: mlflow-db-config
+        # - name: mlflow-db-config
+        #   secret:
+        #     secretName: mlflow-db-config
 status: {}

@@ -76,7 +76,7 @@ with mlflow.start_run() as run:  # you can use run_name="test1" to give a name t
         python_model=model,
         signature=infer_signature(input_sample, model.predict_internal(input_sample)),
         input_example=input_sample,
-        registered_model_name="model1",  # this will automatically register the model and iterate the version
+        # registered_model_name="model1",  # this will automatically register the model and iterate the version
     )
 
     # if you wanna log the model without the wrapper
@@ -115,7 +115,7 @@ print(
 # get @latest version of the model
 client = MlflowClient()
 # get by alias
-model_version = client.get_model_version_by_alias("model1", "champion")
+model_version = client.get_model_version_by_alias("model1", "deployment")
 print(model_version)
 
 # say we are ready for production we want to register the model
