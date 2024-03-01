@@ -15,4 +15,4 @@ operator:
 apply-secrets:
 	kubectl create secret generic --from-file=./secret/basic_auth.ini mlflow-db-config
 run-apply:
-	kubectl apply -k .
+	kubectl apply -k . -n $(NAMESPACE)
