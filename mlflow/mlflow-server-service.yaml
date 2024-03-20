@@ -9,14 +9,9 @@ metadata:
     io.kompose.service: mlflow-server
   name: mlflow-server
 spec:
-  type: NodePort
   ports:
     - protocol: TCP
       port: 5000
-      targetPort: 5000
       name: mlflow-server
-      nodePort: 30007
   selector:
     io.kompose.service: mlflow-server
-status:
-  loadBalancer: {}
