@@ -4,23 +4,22 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.26.0 (40646f47)
+    metallb.universe.tf/address-pool: sdf-services
+    metallb.universe.tf/loadBalancerIPs: 172.24.5.222
   creationTimestamp: null
   labels:
     io.kompose.service: minio
   name: minio
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 9020
       targetPort: 9000
       name: minio
-      nodePort: 30008
     - protocol: TCP
       port: 9021
       targetPort: 80
       name: minio-console
   selector:
     io.kompose.service: minio
-status:
-  loadBalancer: {}
