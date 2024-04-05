@@ -22,6 +22,9 @@ rules:
   resources: ["namespaces"]
   verbs: ["get"]
   resourceNames: ["kube-system"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
