@@ -10,3 +10,5 @@ resources:
 - mlflow-server-claim0-persistentvolumeclaim.yaml
 - mlflow-server-deployment.yaml
 - mlflow-server-service.yaml
+- mlflow-ingress.yaml
+- minio-ingress.yaml
