@@ -12,3 +12,4 @@ resources:
 - mlflow-server-service.yaml
 - mlflow-ingress.yaml
 - minio-ingress.yaml
+- model_deployment_service_tcp.yaml
