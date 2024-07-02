@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: prefect-ui
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: "134.79.0.0/16,172.16.0.0/12,128.55.64.0/18"
 spec:
   rules:
   - host: "ard-modeling-service.slac.stanford.edu"
