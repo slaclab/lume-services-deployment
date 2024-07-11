@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mlflow-db
+  name: mlflow-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mlflow-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/controls: "true"
+        io.kompose.service: mlflow-db
+    spec:
+      containers:
+        - env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_ACCESS_KEY_ID
+                  name: env
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_DEFAULT_REGION
+                  name: env
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_REGION
+                  name: env
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_SECRET_ACCESS_KEY
+                  name: env
+            - name: MINIO_ROOT_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: MINIO_ROOT_PASSWORD
+                  name: env
+            - name: MINIO_ROOT_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: MINIO_ROOT_USER
+                  name: env
+            - name: MINIO_SITE_REGION
+              valueFrom:
+                configMapKeyRef:
+                  key: MINIO_SITE_REGION
+                  name: env
+            - name: MLFLOW_S3_ENDPOINT_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: MLFLOW_S3_ENDPOINT_URL
+                  name: env
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: env
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: env
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_USER
+                  name: env
+          image: postgres:15.0
+          name: mlflow-db
+          ports:
+            - containerPort: 5436
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: mlflow-db-claim0
+      hostname: mlflow-db
+      restartPolicy: Always
+      volumes:
+        - name: mlflow-db-claim0
+          persistentVolumeClaim:
+            claimName: mlflow-db-claim0
+status: {}

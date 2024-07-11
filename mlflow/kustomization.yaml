@@ -1,0 +1,15 @@
+resources:
+- createbuckets-deployment.yaml
+- env-configmap.yaml
+- minio-claim0-persistentvolumeclaim.yaml
+- minio-deployment.yaml
+- minio-service.yaml
+- mlflow-db-claim0-persistentvolumeclaim.yaml
+- mlflow-db-deployment.yaml
+- mlflow-db-service.yaml
+- mlflow-server-claim0-persistentvolumeclaim.yaml
+- mlflow-server-deployment.yaml
+- mlflow-server-service.yaml
+- mlflow-ingress.yaml
+- minio-ingress.yaml
+- model_deployment_service_tcp.yaml
