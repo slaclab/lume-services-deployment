@@ -28,7 +28,7 @@ spec:
         - args:
             - bash
             - -c
-            - pip install mlflow boto3 psycopg2-binary && mlflow server --serve-artifacts --host 0.0.0.0 --backend-store-uri postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@mlflow-db:5436/mlflowdb --default-artifact-root s3://mlflow-bucket/ --app-name basic-auth --workers 1
+            - pip install mlflow[auth] boto3 psycopg2-binary && mlflow server --serve-artifacts --host 0.0.0.0 --backend-store-uri postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@mlflow-db:5436/mlflowdb --default-artifact-root s3://mlflow-bucket/ --app-name basic-auth --workers 1
           env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
@@ -64,6 +64,11 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: MINIO_SITE_REGION
+                  name: env
+            - name: MLFLOW_FLASK_SERVER_SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: MLFLOW_FLASK_SERVER_SECRET_KEY
                   name: env
             - name: MLFLOW_S3_ENDPOINT_URL
               valueFrom:
