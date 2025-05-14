@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: prefect-ui
   annotations:
-    nginx.ingress.kubernetes.io/whitelist-source-range: "134.79.0.0/16,172.16.0.0/12,128.55.64.0/18,208.45.173.162,216.46.165.69"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "134.79.0.0/16,172.16.0.0/12,128.55.64.0/18,208.45.173.162,216.46.165.69,71.198.254.69,23.118.49.153"
 spec:
   rules:
   - host: "ard-modeling-service.slac.stanford.edu"
